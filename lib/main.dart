@@ -9,5 +9,5 @@ void main() {
   Logger.root.level = Level.ALL;
   // Logger.root.onRecord.listen(print);
   
-  runApp(const App());
+  runApp(App());
 }

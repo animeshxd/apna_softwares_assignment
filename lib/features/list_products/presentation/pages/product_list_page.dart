@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../injector/injector.dart';
-import '../../../bookmark/presentation/bloc/bookmark_bloc.dart';
 import '../bloc/list_products_bloc.dart';
 import '../widgets/product_tile.dart';
 
@@ -11,13 +9,7 @@ class ProductListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: getIt<ListProductsBloc>(),
-      child: BlocProvider<BookmarkCubit>(
-        create: (context) => getIt<BookmarkCubit>(),
-        child: const ProductListView(),
-      ),
-    );
+    return const ProductListView();
   }
 }
 
