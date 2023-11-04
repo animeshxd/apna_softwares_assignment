@@ -1,10 +1,11 @@
-import 'package:apna_softwares_assignment/features/bookmark/domain/usecases/get_favorites_products.dart';
-import 'package:apna_softwares_assignment/features/bookmark/domain/usecases/mark_as_favorite.dart';
-import 'package:apna_softwares_assignment/features/bookmark/domain/usecases/params.dart';
-import 'package:apna_softwares_assignment/features/bookmark/domain/usecases/remove_from_favourites.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../domain/usecases/get_favorites_products.dart';
+import '../../domain/usecases/mark_as_favorite.dart';
+import '../../domain/usecases/params.dart';
+import '../../domain/usecases/remove_from_favourites.dart';
 
 part 'bookmark_state.dart';
 
@@ -53,3 +54,5 @@ class BookmarkCubit extends Cubit<BookmarkState> {
     emit(newState);
   }
 }
+
+
