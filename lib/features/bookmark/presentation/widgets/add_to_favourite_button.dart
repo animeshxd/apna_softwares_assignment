@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/bookmark_cubit.dart';
+import '../bloc/bookmark_bloc.dart';
 
 class AddToFavouriteButton extends StatefulWidget {
   const AddToFavouriteButton({super.key, required this.productId});
@@ -22,7 +22,7 @@ class _AddToFavouriteButtonState extends State<AddToFavouriteButton> {
     var bookmarkCubit = context.read<BookmarkCubit>();
     var state = bookmarkCubit.state;
     if (state is BookmarkInitial) {
-      bookmarkCubit.getFavouriteProducts();
+      bookmarkCubit.add(GetFavouriteProducts());
     }
     favouriteProducts = state.favourites;
   }
@@ -46,10 +46,10 @@ class _AddToFavouriteButtonState extends State<AddToFavouriteButton> {
   }
 
   _onAddToFavourite(BuildContext context) {
-    context.read<BookmarkCubit>().markProductAsFavorite(widget.productId);
+    context.read<BookmarkCubit>().add(AddProductToFavorites(productId: widget.productId));
   }
 
   _onRemoveToFavourite(BuildContext context) {
-    context.read<BookmarkCubit>().removeFromFavourites(widget.productId);
+    context.read<BookmarkCubit>().add(RemoveProductFromFavourites(productId: widget.productId));
   }
 }

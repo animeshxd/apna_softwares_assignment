@@ -20,7 +20,9 @@ import 'package:apna_softwares_assignment/features/bookmark/domain/usecases/mark
     as _i8;
 import 'package:apna_softwares_assignment/features/bookmark/domain/usecases/remove_from_favourites.dart'
     as _i12;
-import 'package:apna_softwares_assignment/features/bookmark/presentation/bloc/bookmark_cubit.dart'
+import 'package:apna_softwares_assignment/features/bookmark/domain/usecases/usecases.dart'
+    as _i14;
+import 'package:apna_softwares_assignment/features/bookmark/presentation/bloc/bookmark_bloc.dart'
     as _i13;
 import 'package:apna_softwares_assignment/features/list_products/data/datasources/products_remote_data_source.dart'
     as _i9;
@@ -29,10 +31,10 @@ import 'package:apna_softwares_assignment/features/list_products/data/repositori
 import 'package:apna_softwares_assignment/features/list_products/domain/repositories/product_repository.dart'
     as _i10;
 import 'package:apna_softwares_assignment/features/list_products/domain/usecases/get_products.dart'
-    as _i14;
-import 'package:apna_softwares_assignment/features/list_products/presentation/bloc/list_products_bloc.dart'
     as _i15;
-import 'package:apna_softwares_assignment/injector/injector.dart' as _i16;
+import 'package:apna_softwares_assignment/features/list_products/presentation/bloc/list_products_bloc.dart'
+    as _i16;
+import 'package:apna_softwares_assignment/injector/injector.dart' as _i17;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:http/http.dart' as _i3;
 import 'package:injectable/injectable.dart' as _i2;
@@ -64,19 +66,20 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i9.ProductsRemoteDataSourceImpl(client: gh<_i3.Client>()));
     gh.lazySingleton<_i10.ProductsRepository>(() => _i11.ProductRepositoryImpl(
         productsRemoteDataSource: gh<_i9.ProductsRemoteDataSource>()));
-    gh.lazySingleton<_i12.RemoveFromFavourites>(() => _i12.RemoveFromFavourites(
-        repository: gh<_i5.FavouriteProductsRepository>()));
+    gh.lazySingleton<_i12.RemoveProductFromFavourites>(() =>
+        _i12.RemoveProductFromFavourites(
+            repository: gh<_i5.FavouriteProductsRepository>()));
     gh.lazySingleton<_i13.BookmarkCubit>(() => _i13.BookmarkCubit(
-          gh<_i7.GetFavoritesProducts>(),
-          gh<_i12.RemoveFromFavourites>(),
-          gh<_i8.MarkProductAsFavorite>(),
+          gh<_i14.GetFavoritesProducts>(),
+          gh<_i14.RemoveProductFromFavourites>(),
+          gh<_i14.MarkProductAsFavorite>(),
         ));
-    gh.lazySingleton<_i14.GetProducts>(
-        () => _i14.GetProducts(repository: gh<_i10.ProductsRepository>()));
-    gh.lazySingleton<_i15.ListProductsBloc>(
-        () => _i15.ListProductsBloc(gh<_i14.GetProducts>()));
+    gh.lazySingleton<_i15.GetProducts>(
+        () => _i15.GetProducts(repository: gh<_i10.ProductsRepository>()));
+    gh.lazySingleton<_i16.ListProductsBloc>(
+        () => _i16.ListProductsBloc(gh<_i15.GetProducts>()));
     return this;
   }
 }
 
-class _$RegisterModule extends _i16.RegisterModule {}
+class _$RegisterModule extends _i17.RegisterModule {}

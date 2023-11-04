@@ -7,10 +7,10 @@ import '../repositories/favourite_products_repository.dart';
 import 'params.dart';
 
 @lazySingleton
-class RemoveFromFavourites extends UseCase<Set<int>, Params> {
+class RemoveProductFromFavourites extends UseCase<Set<int>, Params> {
   final FavouriteProductsRepository repository;
 
-  RemoveFromFavourites({required this.repository});
+  RemoveProductFromFavourites({required this.repository});
 
   @override
   Future<Either<Failure, Set<int>>> call(Params params) async {

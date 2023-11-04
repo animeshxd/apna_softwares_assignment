@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../injector/injector.dart';
-import '../../../bookmark/presentation/bloc/bookmark_cubit.dart';
+import '../../../bookmark/presentation/bloc/bookmark_bloc.dart';
 import '../bloc/list_products_bloc.dart';
 import '../widgets/product_tile.dart';
 

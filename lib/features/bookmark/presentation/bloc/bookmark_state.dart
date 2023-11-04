@@ -1,4 +1,4 @@
-part of 'bookmark_cubit.dart';
+part of 'bookmark_bloc.dart';
 
 abstract class BookmarkState extends Equatable {
   const BookmarkState(this.favourites);
