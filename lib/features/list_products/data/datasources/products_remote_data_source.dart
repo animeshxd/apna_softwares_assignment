@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 
 import '../../error/exceptions.dart';
 import '../models/product.dart';
@@ -9,6 +10,7 @@ abstract class ProductsRemoteDataSource {
   Future<List<ProductModel>> getProducts([int nextPage = 1]);
 }
 
+@LazySingleton(as: ProductsRemoteDataSource)
 class ProductsRemoteDataSourceImpl implements ProductsRemoteDataSource {
   final http.Client client;
 

@@ -4,9 +4,11 @@ import 'package:apna_softwares_assignment/features/bookmark/domain/usecases/para
 import 'package:apna_softwares_assignment/features/bookmark/domain/usecases/remove_from_favourites.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
 part 'bookmark_state.dart';
 
+@lazySingleton
 class BookmarkCubit extends Cubit<BookmarkState> {
   final GetFavoritesProducts _getFavoritesProducts;
   final RemoveFromFavourites _removeFromFavourites;

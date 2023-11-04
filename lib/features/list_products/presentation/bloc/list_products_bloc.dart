@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../domain/entities/product.dart';
@@ -8,6 +9,7 @@ import '../../domain/usecases/get_products.dart';
 part 'list_products_event.dart';
 part 'list_products_state.dart';
 
+@lazySingleton
 class ListProductsBloc extends Bloc<ListProductsEvent, ListProductsState> {
   final GetProducts getProducts;
   ListProductsBloc(GetProducts getProductsUseCase)

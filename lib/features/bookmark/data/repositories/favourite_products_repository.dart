@@ -1,9 +1,11 @@
 import 'package:apna_softwares_assignment/core/error/failure.dart';
 import 'package:apna_softwares_assignment/features/bookmark/domain/repositories/favourite_products_repository.dart';
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 
 import '../datasources/favourite_products_local_data_source.dart';
 
+@LazySingleton(as: FavouriteProductsRepository)
 class FavouriteProductsRepositoryImpl extends FavouriteProductsRepository {
   final FavouriteProductsLocalDataSource favouriteProductsLocalDataSource;
 

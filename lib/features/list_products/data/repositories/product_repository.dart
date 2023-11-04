@@ -1,11 +1,12 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../domain/entities/product.dart';
 import '../../domain/repositories/product_repository.dart';
 import '../../error/exceptions.dart';
 import '../datasources/products_remote_data_source.dart';
-
+@LazySingleton(as: ProductsRepository)
 class ProductRepositoryImpl extends ProductsRepository {
   final ProductsRemoteDataSource productsRemoteDataSource;
 

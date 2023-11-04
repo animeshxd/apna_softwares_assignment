@@ -1,9 +1,11 @@
+import 'package:injectable/injectable.dart';
+
 abstract class FavouriteProductsLocalDataSource {
   Set<int> markAsFavorite(int productId);
   Set<int> removeFromFavourite(int productId);
   Set<int> getFavorites();
 }
-
+@LazySingleton(as: FavouriteProductsLocalDataSource)
 class FavouriteProductsLocalDataSourceImpl
     implements FavouriteProductsLocalDataSource {
   final favouriteProducts = <int>{};

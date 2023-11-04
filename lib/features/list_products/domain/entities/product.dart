@@ -14,5 +14,5 @@ class Product extends Equatable {
   });
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [id, name, createdAt, mrp];
 }
