@@ -1,26 +1,13 @@
-import 'package:apna_softwares_assignment/injector/injector.dart';
 import 'package:flutter/material.dart';
+import 'package:logging/logging.dart';
+
+import 'app/app.dart';
+import 'injector/injector.dart';
 
 void main() {
   configureDependencies();
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
-      ),
-    );
-  }
+  Logger.root.level = Level.ALL;
+  // Logger.root.onRecord.listen(print);
+  
+  runApp(const App());
 }

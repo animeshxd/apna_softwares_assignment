@@ -7,7 +7,7 @@ import '../../../../core/usecases/usecase.dart';
 import '../entities/product.dart';
 import '../repositories/product_repository.dart';
 
-@LazySingleton()
+@lazySingleton
 class GetProducts implements UseCase<List<Product>, GetProductsParams> {
   final ProductsRepository repository;
 
