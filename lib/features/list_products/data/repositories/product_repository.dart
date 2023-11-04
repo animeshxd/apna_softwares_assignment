@@ -25,8 +25,8 @@ class ProductRepositoryImpl extends ProductsRepository {
       return left(ServerFailure());
     } on ConnectionException catch (_) {
       return left(ConnectionFailure());
-    } on Exception catch (_) {
-      logger.shout("Unexpected error: ", _);
+    } catch (e) {
+      logger.shout("Unexpected error: ", e);
       return left(UnhandledFailure());
     }
   }
