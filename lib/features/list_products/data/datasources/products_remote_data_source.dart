@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
@@ -32,7 +33,14 @@ class ProductsRemoteDataSourceImpl implements ProductsRemoteDataSource {
     var jsonData = json.decode(response.body) as Map<String, dynamic>;
 
     return List<ProductModel>.from(
-      (jsonData['data']?['data'] ?? []).map((e) => ProductModel.fromJson(e)),
+      (jsonData['data']?['data'] ?? []).map((e) {
+        try {
+          return ProductModel.fromJson(e);
+        } catch (_) {
+          log("Failed to Serialize Model object on page $page, $e", error: _);
+          throw JSONSerializeModelFailedException(e);
+        }
+      }),
     );
   }
 }
