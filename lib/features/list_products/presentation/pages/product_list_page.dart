@@ -60,9 +60,30 @@ class _ProductListViewState extends State<ProductListView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocConsumer<ListProductsBloc, ListProductsState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          var messenger = ScaffoldMessenger.maybeOf(context);
+          messenger?.clearSnackBars();
+
+          if (state.products.isNotEmpty &&
+              state is NextListProductsLoadFailed) {
+            messenger?.showSnackBar(SnackBar(content: Text(state.message)));
+          }
+        },
         builder: (context, state) {
           bool isLoading = state is NextListProductsLoading;
+
+          if (state.products.isEmpty && state is NextListProductsLoaded) {
+            return RefreshIndicator(
+              onRefresh: () => _getNextProducts(context),
+              child: const Center(child: Text('No Data Available')),
+            );
+          }
+          if (state.products.isEmpty && state is NextListProductsLoadFailed) {
+            return RefreshIndicator(
+              onRefresh: () => _getNextProducts(context),
+              child: Center(child: Text(state.message)),
+            );
+          }
           return ListView.builder(
             controller: _scrollController,
             itemCount: isLoading
