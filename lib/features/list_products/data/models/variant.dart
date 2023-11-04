@@ -1,12 +1,12 @@
 class VariantModel {
-  int? id;
+  num? id;
   String? name;
   dynamic description;
   int? productId;
   dynamic status;
-  int? price;
-  int? mrp;
-  double? unit;
+  num? price;
+  num? mrp;
+  num? unit;
   dynamic unitId;
   String? createdAt;
   String? updatedAt;
@@ -35,7 +35,7 @@ class VariantModel {
     description = json['description'];
     productId = json['productId'];
     status = json['status'];
-    price = json['price'];
+    price = json['price']?.toDouble();
     mrp = json['mrp'];
     unit = json['unit'];
     unitId = json['unitId'];

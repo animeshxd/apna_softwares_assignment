@@ -1,7 +1,8 @@
+import '../../domain/entities/product.dart';
+import 'gst.dart';
 import 'product_category.dart';
 import 'unit_detail.dart';
 import 'variant.dart';
-import '../../domain/entities/product.dart';
 
 class ProductModel extends Product {
   final int id;
@@ -28,7 +29,7 @@ class ProductModel extends Product {
   final num? currentStockCount;
   final ProductCategoryModel? productCategory;
   final UnitDetailModel? unitDetail;
-  final String? gst;
+  final GstModel? gst;
   final List<VariantModel>? variants;
 
   const ProductModel({
@@ -90,7 +91,7 @@ class ProductModel extends Product {
       unitDetail: json['unitDetail'] != null
           ? UnitDetailModel.fromJson(json['unitDetail'])
           : null,
-      gst: json['gst'],
+      gst: json['gst'] == null? null : GstModel.fromJson(json['gst']),
       variants: List<VariantModel>.from(
         (json['variants'] ?? []).map((e) => VariantModel.fromJson(e)),
       ),
@@ -127,7 +128,7 @@ class ProductModel extends Product {
     if (unitDetail != null) {
       data['unitDetail'] = unitDetail!.toJson();
     }
-    data['gst'] = gst;
+    data['gst'] = gst?.toJson();
     if (variants != null) {
       data['variants'] = variants!.map((v) => v.toJson()).toList();
     }
