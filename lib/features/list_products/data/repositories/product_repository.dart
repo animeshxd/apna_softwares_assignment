@@ -1,11 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logging/logging.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../domain/entities/product.dart';
 import '../../domain/repositories/product_repository.dart';
 import '../../error/exceptions.dart';
 import '../datasources/products_remote_data_source.dart';
+
+var logger = Logger('ProductsRepository');
+
 @LazySingleton(as: ProductsRepository)
 class ProductRepositoryImpl extends ProductsRepository {
   final ProductsRemoteDataSource productsRemoteDataSource;
@@ -21,7 +25,8 @@ class ProductRepositoryImpl extends ProductsRepository {
       return left(ServerFailure());
     } on ConnectionException catch (_) {
       return left(ConnectionFailure());
-    } catch (_) {
+    } on Exception catch (_) {
+      logger.shout("Unexpected error: ", _);
       return left(UnhandledFailure());
     }
   }
