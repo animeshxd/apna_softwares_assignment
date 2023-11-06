@@ -8,12 +8,12 @@ part 'bookmark_state.dart';
 part 'bookmark_event.dart';
 
 @lazySingleton
-class BookmarkCubit extends Bloc<BookmarkEvent, BookmarkState> {
+class BookmarkBloc extends Bloc<BookmarkEvent, BookmarkState> {
   final uc.GetFavoritesProducts _getFavoritesProducts;
   final uc.RemoveProductFromFavourites _removeProductFromFavourites;
   final uc.MarkProductAsFavorite _markProductAsFavorite;
 
-  BookmarkCubit(
+  BookmarkBloc(
     this._getFavoritesProducts,
     this._removeProductFromFavourites,
     this._markProductAsFavorite,

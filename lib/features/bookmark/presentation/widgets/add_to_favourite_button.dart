@@ -19,7 +19,7 @@ class _AddToFavouriteButtonState extends State<AddToFavouriteButton> {
   @override
   void initState() {
     super.initState();
-    var bookmarkCubit = context.read<BookmarkCubit>();
+    var bookmarkCubit = context.read<BookmarkBloc>();
     var state = bookmarkCubit.state;
     if (state is BookmarkInitial) {
       bookmarkCubit.add(GetFavouriteProducts());
@@ -29,7 +29,7 @@ class _AddToFavouriteButtonState extends State<AddToFavouriteButton> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BookmarkCubit, BookmarkState>(
+    return BlocBuilder<BookmarkBloc, BookmarkState>(
       builder: (context, state) {
         isFavourite = state.favourites.contains(widget.productId);
         return IconButton(
@@ -46,10 +46,14 @@ class _AddToFavouriteButtonState extends State<AddToFavouriteButton> {
   }
 
   _onAddToFavourite(BuildContext context) {
-    context.read<BookmarkCubit>().add(AddProductToFavorites(productId: widget.productId));
+    context
+        .read<BookmarkBloc>()
+        .add(AddProductToFavorites(productId: widget.productId));
   }
 
   _onRemoveToFavourite(BuildContext context) {
-    context.read<BookmarkCubit>().add(RemoveProductFromFavourites(productId: widget.productId));
+    context
+        .read<BookmarkBloc>()
+        .add(RemoveProductFromFavourites(productId: widget.productId));
   }
 }

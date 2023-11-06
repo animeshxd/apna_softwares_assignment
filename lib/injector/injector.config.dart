@@ -69,7 +69,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i12.RemoveProductFromFavourites>(() =>
         _i12.RemoveProductFromFavourites(
             repository: gh<_i5.FavouriteProductsRepository>()));
-    gh.lazySingleton<_i13.BookmarkCubit>(() => _i13.BookmarkCubit(
+    gh.lazySingleton<_i13.BookmarkBloc>(() => _i13.BookmarkBloc(
           gh<_i14.GetFavoritesProducts>(),
           gh<_i14.RemoveProductFromFavourites>(),
           gh<_i14.MarkProductAsFavorite>(),

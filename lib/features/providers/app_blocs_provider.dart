@@ -13,7 +13,7 @@ class AppBlocsProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider.value(value: getIt<BookmarkCubit>()),
+        BlocProvider.value(value: getIt<BookmarkBloc>()),
         BlocProvider.value(value: getIt<ListProductsBloc>()),
       ],
       child: child,
